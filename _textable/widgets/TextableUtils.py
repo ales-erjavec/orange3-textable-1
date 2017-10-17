@@ -656,8 +656,19 @@ class SegmentationsInputList(object):
         obj.__dict__["__segmentations"] = value
 
 
+class _ContextHandler(settings.ContextHandler):
+    #: Reimplemented due to orange3 gh-2301
+    #: (the close_context deletes the textable widgets uuid)
+    def close_context(self, widget):
+        if widget.current_context is None:
+            return
+
+        self.settings_from_widget(widget)
+        widget.current_context = None
+
+
 class SegmentationListContextHandler(VersionedSettingsHandlerMixin,
-                                     settings.ContextHandler):
+                                     _ContextHandler):
     """
     Segmentations list context handler.
 
@@ -846,7 +857,7 @@ class SegmentationListContextHandler(VersionedSettingsHandlerMixin,
 
 
 class SegmentationContextHandler(VersionedSettingsHandlerMixin,
-                                 settings.ContextHandler):
+                                 _ContextHandler):
     """
     Context handler for a single :class:`Segmentation` instance.
 
