@@ -903,7 +903,7 @@ class OWTextableBaseWidget(widget.OWWidget):
     autoSend = settings.Setting(False)  # type: bool
     #: A global widget unique id, for every widget created anew (i.e. not
     #: restored from a saved workflow) a new unique id is issued.
-    uuid = settings.Setting(None, schema_only=True)  # type: str
+    _uuid = settings.Setting(None, schema_only=True)  # type: str
 
     # Disable default OWWidget message bar
     # All in widget messages are delegated to InfoBox ??
@@ -911,16 +911,37 @@ class OWTextableBaseWidget(widget.OWWidget):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # uuid is None -> a new widget, otherwise it was restored from a
-        # saved workflow
-        if self.uuid is None:
-            self.uuid = str(uuid.uuid4())
+        # _uuid is None -> a new widget, otherwise it was restored from a
+        # saved workflow.
+        if self._uuid is None:
+            self._uuid = str(uuid.uuid4())
+        # Due to workaround for orange3 issue #2691 the actual serialized
+        # name is underscored and synced into the effective self.uuid (see
+        # storeSpecificSettings for more)
+        self.uuid = self._uuid
         self.__firstShowPending = True
         # set size policy to Minimum to ensure that InfoBox statusLabel
         # receives enough space when its text is wrapped. A workaround
         # for OWWidget's layout not propagating `heightForWidth` size hints
         self.controlArea.setSizePolicy(QSizePolicy.Minimum,
                                        QSizePolicy.Minimum)
+
+    @classmethod
+    def migrate_settings(cls, settings, version):
+        """
+        Reimplemented.
+        """
+        if "uuid" in settings:
+            settings["_uuid"] = settings.pop("uuid")
+
+    def storeSpecificSettings(self):
+        """
+        Reimplemented.
+        """
+        super().storeSpecificSettings()
+        # Need to restore the '_uuid' for serialization because closeContext
+        # resets the _uuid to None (since Orange3 3.4.5)
+        self._uuid = self.uuid
 
     def adjustSizeWithTimer(self):
         self.ensurePolished()
