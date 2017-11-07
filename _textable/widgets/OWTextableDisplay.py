@@ -33,7 +33,7 @@ from LTTL.Input import Input
 import LTTL.Segmenter as Segmenter
 
 from .TextableUtils import (
-    OWTextableBaseWidget, VersionedSettingsHandler,
+    OWTextableBaseWidget, ProgressBar, VersionedSettingsHandler,
     SendButton, InfoBox, getPredefinedEncodings, pluralize,
     addSeparatorAfterDefaultEncodings, normalizeCarriageReturns
 )
@@ -425,7 +425,7 @@ class OWTextableDisplay(OWTextableBaseWidget):
                 self.advancedExportBox.setDisabled(True)
                 self.formattingIndentedBox.setDisabled(False)
                 displayedString = u''
-                progressBar = gui.ProgressBar(
+                progressBar = ProgressBar(
                     self,
                     iterations=len(self.segmentation)
                 )
@@ -467,7 +467,7 @@ class OWTextableDisplay(OWTextableBaseWidget):
                 self.formattingIndentedBox.setDisabled(True)
                 self.warning()
                 self.error()
-                progressBar = gui.ProgressBar(
+                progressBar = ProgressBar(
                     self,
                     iterations=len(self.segmentation)
                 )

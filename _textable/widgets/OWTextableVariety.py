@@ -26,7 +26,7 @@ from LTTL.Segmentation import Segmentation
 import LTTL.Processor as Processor
 
 from .TextableUtils import (
-    OWTextableBaseWidget, SegmentationListContextHandler,
+    OWTextableBaseWidget, ProgressBar, SegmentationListContextHandler,
     SegmentationsInputList, InfoBox, SendButton, updateMultipleInputs
 )
 import Orange.data
@@ -491,7 +491,7 @@ class OWTextableVariety(OWTextableBaseWidget):
                 num_iterations = num_rows / 2
 
             # Measure...
-            progressBar = gui.ProgressBar(
+            progressBar = ProgressBar(
                 self,
                 iterations=num_iterations
             )
@@ -536,7 +536,7 @@ class OWTextableVariety(OWTextableBaseWidget):
 
 
             # Measure...
-            progressBar = gui.ProgressBar(
+            progressBar = ProgressBar(
                 self,
                 iterations=num_iterations
             )

@@ -29,7 +29,7 @@ from LTTL.Segmentation import Segmentation
 from LTTL.Utils import iround
 
 from .TextableUtils import (
-    OWTextableBaseWidget, SegmentationContextHandler,
+    OWTextableBaseWidget, ProgressBar, SegmentationContextHandler,
     InfoBox, SendButton, AdvancedSettings, pluralize
 )
 
@@ -686,7 +686,7 @@ class OWTextableSelect(OWTextableBaseWidget):
                 autoNumberKey = None
 
             # Perform selection...
-            progressBar = gui.ProgressBar(
+            progressBar = ProgressBar(
                 self,
                 iterations=num_iterations
             )
@@ -759,7 +759,7 @@ class OWTextableSelect(OWTextableBaseWidget):
             num_iterations = len(self.segmentation)
 
             # Perform selection...
-            progressBar = gui.ProgressBar(
+            progressBar = ProgressBar(
                 self,
                 iterations=num_iterations
             )

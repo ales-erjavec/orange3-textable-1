@@ -25,7 +25,7 @@ import LTTL.Segmenter as Segmenter
 from LTTL.Segmentation import Segmentation
 
 from .TextableUtils import (
-    OWTextableBaseWidget, InfoBox, SendButton, AdvancedSettings,
+    OWTextableBaseWidget, ProgressBar, InfoBox, SendButton, AdvancedSettings,
     pluralize, updateMultipleInputs, SegmentationListContextHandler,
     SegmentationsInputList
 )
@@ -355,7 +355,7 @@ class OWTextableIntersect(OWTextableBaseWidget):
             copyAnnotations = True
 
         # Perform filtering...
-        progressBar = gui.ProgressBar(
+        progressBar = ProgressBar(
             self,
             iterations=num_iterations
         )

@@ -25,7 +25,7 @@ from LTTL.Segmentation import Segmentation
 import LTTL.Processor as Processor
 
 from .TextableUtils import (
-    OWTextableBaseWidget,
+    OWTextableBaseWidget, ProgressBar,
     InfoBox, SendButton, updateMultipleInputs, SegmentationListContextHandler,
     SegmentationsInputList
 )
@@ -344,7 +344,7 @@ class OWTextableCategory(OWTextableBaseWidget):
             contexts['annotation_key'] = None
 
         # Count...
-        progressBar = gui.ProgressBar(
+        progressBar = ProgressBar(
             self,
             iterations=len(contexts['segmentation'])
         )

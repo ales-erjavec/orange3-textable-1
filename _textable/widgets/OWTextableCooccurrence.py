@@ -28,7 +28,7 @@ from LTTL.Table import IntPivotCrosstab
 from LTTL.Segmentation import Segmentation
 
 from .TextableUtils import (
-    OWTextableBaseWidget,
+    OWTextableBaseWidget, ProgressBar,
     InfoBox, SendButton, updateMultipleInputs, pluralize,
     SegmentationListContextHandler, SegmentationsInputList,
 )
@@ -402,7 +402,7 @@ class OWTextableCooccurrence(OWTextableBaseWidget):
 
         # Case1: sliding window
         if self.mode == 'Sliding window':
-            progressBar = gui.ProgressBar(
+            progressBar = ProgressBar(
                 self,
                 iterations=len(units['segmentation']) - (self.windowSize - 1)
             )
@@ -432,7 +432,7 @@ class OWTextableCooccurrence(OWTextableBaseWidget):
                 if units2['annotation_key'] == u'(none)':
                     units2['annotation_key'] = None
                 num_iterations = len(contexts['segmentation'])
-                progressBar = gui.ProgressBar(
+                progressBar = ProgressBar(
                     self,
                     iterations=num_iterations * 2
                 )
@@ -445,7 +445,7 @@ class OWTextableCooccurrence(OWTextableBaseWidget):
                 )
             else:
                 num_iterations = (len(contexts['segmentation']))
-                progressBar = gui.ProgressBar(
+                progressBar = ProgressBar(
                     self,
                     iterations=num_iterations
                 )

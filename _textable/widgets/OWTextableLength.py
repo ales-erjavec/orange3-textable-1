@@ -26,7 +26,7 @@ from LTTL.Segmentation import Segmentation
 import LTTL.Processor as Processor
 
 from .TextableUtils import (
-    OWTextableBaseWidget, SegmentationListContextHandler,
+    OWTextableBaseWidget, ProgressBar, SegmentationListContextHandler,
     SegmentationsInputList, InfoBox, SendButton, updateMultipleInputs
 )
 
@@ -330,7 +330,7 @@ class OWTextableLength(OWTextableBaseWidget):
         if self.mode == 'Sliding window':
 
             # Compute length...
-            progressBar = gui.ProgressBar(
+            progressBar = ProgressBar(
                 self,
                 iterations=len(units) - (self.windowSize - 1)
             )
@@ -362,7 +362,7 @@ class OWTextableLength(OWTextableBaseWidget):
                 num_iterations = 1
 
             # Compute length...
-            progressBar = gui.ProgressBar(
+            progressBar = ProgressBar(
                 self,
                 iterations=num_iterations
             )

@@ -33,7 +33,7 @@ from LTTL.Segmentation import Segmentation
 from LTTL.Input import Input
 
 from .TextableUtils import (
-    OWTextableBaseWidget, VersionedSettingsHandler,
+    OWTextableBaseWidget, ProgressBar, VersionedSettingsHandler,
     InfoBox, SendButton, AdvancedSettings, pluralize,
     getPredefinedEncodings, addSeparatorAfterDefaultEncodings
 )
@@ -608,7 +608,7 @@ class OWTextableConvert(OWTextableBaseWidget):
                 numIterations += num_cols
             if self.reformat:
                 numIterations += num_rows
-            progressBar = gui.ProgressBar(self, numIterations)
+            progressBar = ProgressBar(self, numIterations)
 
             # Sort if needed...
             if self.sortRows or self.sortCols:

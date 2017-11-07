@@ -38,7 +38,7 @@ from LTTL.Input import Input
 import LTTL.Segmenter as Segmenter
 
 from .TextableUtils import (
-    OWTextableBaseWidget, VersionedSettingsHandler,
+    OWTextableBaseWidget, ProgressBar, VersionedSettingsHandler,
     JSONMessage, InfoBox, SendButton, AdvancedSettings,
     addSeparatorAfterDefaultEncodings, addAutoDetectEncoding,
     getPredefinedEncodings, normalizeCarriageReturns, pluralize
@@ -530,7 +530,7 @@ class OWTextableTextFiles(OWTextableBaseWidget):
         else:
             myFiles = [[self.file, self.encoding, u'', u'']]
 
-        progressBar = gui.ProgressBar(
+        progressBar = ProgressBar(
             self,
             iterations=len(myFiles)
         )

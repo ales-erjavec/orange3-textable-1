@@ -33,7 +33,7 @@ from LTTL.Input import Input
 import LTTL.Segmenter as Segmenter
 
 from _textable.widgets.TextableUtils import (
-    OWTextableBaseWidget, VersionedSettingsHandler, pluralize,
+    OWTextableBaseWidget, ProgressBar, VersionedSettingsHandler, pluralize,
     InfoBox, SendButton
 )
 
@@ -214,7 +214,7 @@ class Treetagger(OWTextableBaseWidget):
         )
 
         # Initialize progress bar.
-        self.progressBar = gui.ProgressBar(
+        self.progressBar = ProgressBar(
             self,
             iterations = 5
         )

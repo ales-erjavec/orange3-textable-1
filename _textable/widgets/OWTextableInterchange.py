@@ -25,7 +25,7 @@ from LTTL.Segment import Segment
 from LTTL.Input import Input
 from LTTL.Segmentation import Segmentation
 from .TextableUtils import (
-    OWTextableBaseWidget, VersionedSettingsHandler,
+    OWTextableBaseWidget, ProgressBar, VersionedSettingsHandler,
     SendButton, InfoBox, pluralize
 )
 
@@ -193,7 +193,7 @@ class OWTextableInterchange(OWTextableBaseWidget):
             num_iterations += len(self.corpus)
         if self.segmentation:
             num_iterations += len(self.segmentation)
-        progressBar = gui.ProgressBar(
+        progressBar = ProgressBar(
             self,
             iterations=num_iterations
         )

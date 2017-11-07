@@ -28,7 +28,7 @@ import LTTL.Segmenter as Segmenter
 from LTTL.Segmentation import Segmentation
 
 from .TextableUtils import (
-    OWTextableBaseWidget, VersionedSettingsHandler,
+    OWTextableBaseWidget, ProgressBar, VersionedSettingsHandler,
     pluralize,SendButton, InfoBox, AdvancedSettings
 )
 
@@ -556,7 +556,7 @@ class OWTextableExtractXML(OWTextableBaseWidget):
             preserveLeaves = False
 
         # Perform tokenization...
-        progressBar = gui.ProgressBar(
+        progressBar = ProgressBar(
             self,
             iterations=num_iterations
         )

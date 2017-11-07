@@ -28,7 +28,7 @@ import LTTL.Segmenter as Segmenter
 from LTTL.Segmentation import Segmentation
 
 from .TextableUtils import (
-    OWTextableBaseWidget, VersionedSettingsHandler,
+    OWTextableBaseWidget, ProgressBar, VersionedSettingsHandler,
     JSONMessage, InfoBox, SendButton, AdvancedSettings,
     normalizeCarriageReturns, pluralize
 )
@@ -687,7 +687,7 @@ class OWTextableSegment(OWTextableBaseWidget):
                 return
 
         # Perform tokenization...
-        progressBar = gui.ProgressBar(
+        progressBar = ProgressBar(
             self,
             iterations=len(self.inputSegmentation) * len(myRegexes)
         )
