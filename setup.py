@@ -106,6 +106,7 @@ ENTRY_POINTS = {
     ),
 }
 
+
 def include_documentation(local_dir, install_dir):
     global DATA_FILES
     if 'bdist_wheel' in sys.argv and not path.exists(local_dir):
@@ -122,7 +123,7 @@ def include_documentation(local_dir, install_dir):
 
     
 if __name__ == '__main__':
-    # include_documentation('docs/doc/_build/', 'help/orange3-textable')
+    include_documentation('docs/doc/_build/html', 'help/orange3-textable')
     setup(
         name=NAME,
         version=VERSION,
@@ -141,6 +142,7 @@ if __name__ == '__main__':
         extras_require=EXTRAS_REQUIRE,
         dependency_links=DEPENDENCY_LINKS,
         entry_points=ENTRY_POINTS,
+        data_files=DATA_FILES,
         include_package_data=True,
         zip_safe=False,
     )
